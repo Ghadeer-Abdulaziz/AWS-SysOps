@@ -130,6 +130,14 @@ Now you will have a Virtual Private Cloud (VPC) in the `London` region with the 
    - Network settings: VPC (My-London-VPC), Subnet (Lond-PubSubnet-1), Enable Auto-assign public IP
    - Security group: webServerSG
    - Advanced details: IAM instance profile (Select the SSM role you've created), add the Userdata provided by Mohammed
+      ```bash
+      #!/bin/bash
+      yum update -y
+      yum install -y httpd
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+      ```
    - Launch the instance
 
 2. Test if the instance works by copying the Public IPv4 address and pasting it into a web browser (ensure it's HTTP).
